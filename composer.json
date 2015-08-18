@@ -1,0 +1,13 @@
+{
+    "name": "vendor/patient-file",
+    "description": "Description of project PatientFile.",
+    "authors": [
+        {
+            "name": "g.zarifis",
+            "email": "your@email.here"
+        }
+    ],
+    "require": {
+        "twig/twig": "dev-master"
+    }
+}

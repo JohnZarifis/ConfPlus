@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) { // Form has been submitted.
   $message ="";
   $template = $twig->loadTemplate('login.html');
   echo $template->render(array('message' => $message,));
-  //echo 'test';
+//echo 'test';
 //$name = 'John';
 //$template = $twig->loadTemplate('login.html');
 //echo $template->render(array('name' => $name,));

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block page_styles %}
+{{ parent() }}
+<!-- BEGIN PAGE LEVEL STYLES -->
+<link rel="stylesheet" type="text/css" href="theme/assets/global/plugins/select2/select2.css"/>
+
+
+
+<!-- END PAGE LEVEL STYLES -->
+{% endblock %}
+{% block title %}
+ Conf +| Παρουσιολόγιο
+{%  endblock %}
+{%  block content %}
+<!-- BEGIN CONTENT -->
+
+	<div class="page-content-wrapper">
+		<div class="page-content">
+                  <div class="portlet light bg-inverse">
+                    <div class="portlet-title">
+			<div class="caption">
+			<i class="icon-equalizer font-green-haze"></i>
+			<span class="caption-subject font-green-haze bold uppercase">ΠΑΡΟΥΣΙΟΛΟΓΙΟ</span>
+			<span class="caption-helper">{{ amka ? "ΑΜΚΑ: #{amka} "  : '' }}</span>
+			</div>
+                            <div class="tools">
+				<a href="" class="collapse"></a>
+				<a href="#portlet-config" data-toggle="modal" class="config"></a>
+				<a href="" class="reload"></a>
+											
+			    </div>
+		    </div>
+			<div class="portlet-body form">
+			<!-- BEGIN FORM-->
+			<form action="attendanceHandling.php" class="form-horizontal" method="post">
+                            <div class="form-body">
+                            <h3 class="form-section">ΠΑΡΟΥΣΙΟΛΟΓΙΟ</h3>
+				<div class="row">
+                                    <div class="col-md-6">
+									<div class="form-group">
+                                            <label class="control-label col-md-3">ΌΝΟΜΑ</label>
+                                            <div class="col-md-9">
+                                             <input type="text" class="form-control" required pattern="[0-9]{4}" name ="attendeeid">					    
+                                            </div>
+									</div>
+                                    </div>
+                                                                      
+				  </div>
+				<!--/row-->
+ 
+                                   <h3 class="form-section">ΕΠΙΛΕΞΤΕ </h3>												
+												
+				
+				<div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                        <div class="row">
+                                        <div class="col-md-offset-3 col-md-9">
+                                        <button type="submit" class="btn green btn-lg" name="in">ΕΙΣΟΔΟΣ</button>
+										<button type="button" class="btn red">Cancel</button>
+                                        <button type="submit" class="btn blue-madison btn-lg" name="out" >ΕΞΟΔΟΣ</button>                                      
+                                        </div>
+                                        </div>
+                                        </div>													
+                                    </div>
+				</div>
+                    </form>
+										<!-- END FORM-->
+		</div>
+	</div>
+							
+    </div>
+</div>
+        
+<!-- END CONTENT -->
+
+{%  endblock %}  
+{% block page_level_scripts %}
+{{ parent() }}
+
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script type="text/javascript" src="theme/assets/global/plugins/select2/select2.min.js"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+
+<!-- END PAGE LEVEL SCRIPTS -->
+{%  endblock %}

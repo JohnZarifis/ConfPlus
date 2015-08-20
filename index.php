@@ -12,35 +12,32 @@ $id = $_SESSION['user_id'];
 //print_r($_SESSION); 
 
 
-$sql = "SELECT amka, name ,surname,birthdate ,address,phone,gender FROM patient;";
+$sql = "SELECT  attendeeid,name ,surname, comments FROM attendee;";
 
 
 $result_set = $database->query($sql);
 $MultiDimArray = array();
 while ($row = mysql_fetch_assoc($result_set)) 
 			{
-                         $MultiDimArray[] = array ( 'amka' => $row['amka'],
+                         $MultiDimArray[] = array ( 
                                                     'name' => $row['name'],
                                                     'surname'=>$row['surname'],
-                                                    'birthdate'=>$row['birthdate'],
-                                                    'address'=>$row['address'],
-                                                    'phone'=>$row['phone'],
-                                                    'gender'=>$row['gender'],
-                                                     
+                                                    'comments'=>$row['comments'],
+                                                    'attendeeid'=>$row['attendeeid']
                              );
 			}
 
-$patientno = 0;
+$attendeeno = 0;
 foreach($MultiDimArray as $result){
     
-    $patientno +=1;
+    $attendeeno +=1;
     
     }      
 
 
 $template = $twig->loadTemplate('index.html');  
         echo $template->render(array('username' => $username,
-                                     'patientno' =>$patientno,
+                                     'attendeeno' =>$attendeeno,
                                      'res'=>$MultiDimArray,
                                     
                                     ));

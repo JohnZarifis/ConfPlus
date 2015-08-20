@@ -11,7 +11,7 @@
 <!-- END PAGE LEVEL STYLES -->
 {% endblock %}
 {% block title %}
- Patient +| Dashboard
+ Conf +| Dashboard
 {%  endblock %}
 
 {%  block content %}
@@ -44,7 +44,7 @@
 			
 			<!-- BEGIN PAGE HEADER-->
 			<h3 class="page-title">
-			Dashboard <small>Aσθενών</small>
+			Dashboard <small>Συμμετεχόντων</small>
 			</h3>
 			<div class="page-bar">
 				<ul class="page-breadcrumb">
@@ -69,10 +69,10 @@
 						</div>
 						<div class="details">
 							<div class="number">
-								 {{ patientno }} #
+								 {{ attendeeno }} #
 							</div>
 							<div class="desc">
-								 Ασθενείς
+								 Συμμετέχοντες
 							</div>
 						</div>
 						<a class="more" href="#">
@@ -90,7 +90,7 @@
 								 {{ test }} #
 							</div>
 							<div class="desc">
-								  Eξετάσεις
+								  Αίθουσες
 							</div>
 						</div>
 						<a class="more" href="#">
@@ -108,7 +108,7 @@
 								 {{ test }} #
 							</div>
 							<div class="desc">
-								 Αρχεία
+								 ####
 							</div>
 						</div>
 						<a class="more" href="#">
@@ -126,7 +126,7 @@
 								 {{ test }} #
 							</div>
 							<div class="desc">
-								 Διαγνώσεις
+								 ####
 							</div>
 						</div>
 						<a class="more" href="#">
@@ -144,7 +144,7 @@
 					<div class="portlet solid bordered grey-cararra">
 						<div class="portlet-title">
 							<div class="caption">
-								<i class="fa fa-bar-chart-o"></i> Ασθενείς
+								<i class="fa fa-bar-chart-o"></i> Συμμετέχοντες
 							</div>
 							<div class="actions">
 								<div class="btn-group" data-toggle="buttons">
@@ -172,7 +172,7 @@
 					<div class="portlet solid grey-cararra bordered">
 						<div class="portlet-title">
 							<div class="caption">
-								<i class="fa fa-bullhorn"></i>Εξετάσεις
+								<i class="fa fa-bullhorn"></i>Αίθουσες
 							</div>
 							<div class="actions">
 								<div class="btn-group pull-right">
@@ -230,7 +230,7 @@
 					<div class="portlet box blue-hoki">
 						<div class="portlet-title">
 							<div class="caption">
-								<i class="fa fa-globe"></i>Πίνακας Ασθενών
+								<i class="fa fa-globe"></i>Πίνακας Συμμετεχόντων
 							</div>
 							<div class="tools">
 							</div>
@@ -240,52 +240,29 @@
 							<thead>
 							<tr>
 								
-								<th>
-									 ΑΜΚΑ
-								</th>
+								
 								<th>
 									 ΟΝΟΜΑ
 								</th>
-                                                                <th>
+                                <th>
 									 ΕΠΩΝΥΜΟ
 								</th>
 								<th>
-									 ΗΜ. ΓΕΝΝΗΣΗΣ
+									 ΣΧΟΛΙΑ
 								</th>
-                                                                
-								<th>
-									 Διεύθυνση
-								</th>
-                                                                                                                           
-                                                                <th>
-									 Τηλέφωνο
-								</th>
-                                                                <th>
-                                                                        Στοιχεία
-									
-								</th>
-                                                                <th>
-									Ιστορικό Εξετάσεων
-								</th>
-                                                                <th>
-									Νεα Εξέταση
+                                <th>
+									Αλλαγή Στοιχείων
 								</th>
                                                                
 							</tr>
 							</thead>
 							<tbody>
                                                             {% for row in res %}
-                                                         <tr>
-                                                         <td>{{row['amka']}}</td>
-                                                         <td>{{ row['name']}}</td>
-                                                         
+                                                         <tr>                                                      
+                                                         <td>{{ row['name']}}</td>                                                         
                                                          <td>{{ row['surname']}}</td>
-                                                         <td>{{ row['birthdate']}}</td> 
-                                                         <td>{{ row['address']}}</td>
-                                                         <td>{{ row['phone']}}</td>
-                                                         <td><a href="patient.php?amka={{row['amka']}}"><span class="label label-warning">Αλλαγή Στοιχείων </span></a></td>
-                                                         <td><a href="examHistory.php?amka={{row['amka']}}"><span class="label label-info">Ιστορικό </span></a></td>                                                       
-                                                         <td><a href="examNew.php?amka={{row['amka']}}"><span class="label label-success"> Νέα εξέταση </span></a></td>
+														 <td>{{ row['comments']}}</td>    
+                                                         <td><a href="attendee.php?attendeeid={{row['attendeeid']}}"><span class="label label-warning">Αλλαγή Στοιχείων </span></a></td>                                                        
                                                          </tr>
                                                           {% endfor %}
 							

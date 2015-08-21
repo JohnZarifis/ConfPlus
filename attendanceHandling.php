@@ -8,28 +8,12 @@ if (!$session->is_logged_in()) { redirect_to("login.php"); }
 $username = $_SESSION['user_name'];
 $id = $_SESSION['user_id'];
 
-if (isset($_POST['in'])) {
-    # in-button was clicked
-   $attendeeid = $_POST['attendeeid'];
-$typeOfMove = 'in';
-    //echo "he is in: ";
-     //echo $_POST['attendeeid'];
-     }
-    elseif (isset($_POST['out'])) {
-        # Save-button was clicked
-        $attendeeid = $_POST['attendeeid'];
-		$typeOfMove = 'out';
-       // echo "he is out: ";
-       //echo $_POST['attendeeid'];
-    #header( 'Location: index.php') ; 
-    }
-	elseif(isset($_POST['ignore'])){
-     $sql = "insert into transactions (attendeeid,type,timest) values      ";
-			 
-	}
-$sql =      "select a.attendeeid,a.name,a.surname, a.comments,c.category, v.name as venue from attendee a "
+if (isset($_POST['attendeeid'])) {
+ $attendeeid = $_POST['attendeeid'];
+  $sql =    "select a.attendeeid,a.name,a.surname, a.comments,c.category, v.name as venue from attendee a "
               ."inner join access c on a.attendeeid = c.attendeeid inner join venues v on v.category = c.category "
-			  ."where a.attendeeid = {$attendeeid} and DAY(v.starts) = DAY(CURDATE()) and hour(v.starts) <= hour(now()) + 1";
+			  ." where a.attendeeid = {$attendeeid} and DAY(v.starts) = DAY(CURDATE()) "
+			  . " and hour(now) between hour(v.starts) -1 and hour(v.ends)";
 			  
 $result_set = $database->query($sql);	
 $MultiDimArray = array();
@@ -49,9 +33,37 @@ $attendeeno = 0;
 foreach($MultiDimArray as $result){
     
     $attendeeno +=1;
-	
-    
+	$name = $result['name'];
+ 
     }      
+ 
+}
+
+
+if (isset($_POST['in']) & $attendeeno != 0) {
+    # in-button was clicked
+	$attendeeid = $_POST['attendeeid'];
+	$typeOfMove = 'in';
+	$sqlins = "insert into transactions (attendeeid,type,) values ({$attendeeid}  , {$typeOfMove}  ";
+	  $database->query($sqlins);	
+    //echo "he is in: ";
+     //echo $_POST['attendeeid'];
+     }
+    elseif (isset($_POST['out'])) {
+        # Save-button was clicked
+        $attendeeid = $_POST['attendeeid'];
+		$typeOfMove = 'out';
+		$sqlout = "insert into transactions (attendeeid,type,) values ({$attendeeid}  , {$typeOfMove}  ";
+	    $database->query($sqlout);	
+       // echo "he is out: ";
+       //echo $_POST['attendeeid'];
+    #header( 'Location: index.php') ; 
+    }
+	elseif(isset($_POST['ignore'])){
+     $sqlins = "insert into transactions (attendeeid,type,) values ({$attendeeid}  , {$typeOfMove}  ";
+	  $database->query($sqlins);	
+	}
+
 if($attendeeno == 0) {
 			 $message = 'No access at this time of day';
 			 echo $message;
@@ -63,6 +75,7 @@ if($attendeeno == 0) {
                                      'attendeeno' =>$attendeeno,
                                      'res'=>$MultiDimArray,
 									 'message'=>$message,
+									 'name'=>$name,
                                     
                                     )); 
 }

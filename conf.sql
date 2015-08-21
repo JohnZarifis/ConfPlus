@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.12
+-- version 4.3.11
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 20, 2015 at 09:49 PM
--- Server version: 5.6.25
--- PHP Version: 5.6.11
+-- Generation Time: Aug 21, 2015 at 06:14 AM
+-- Server version: 5.6.24
+-- PHP Version: 5.6.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `conf`
@@ -36,7 +36,11 @@ CREATE TABLE IF NOT EXISTS `access` (
 --
 
 INSERT INTO `access` (`attendeeid`, `category`) VALUES
-(5, 'Workshops');
+(5, 'Workshops'),
+(1, 'Workshops'),
+(2, 'Ομιλίες'),
+(3, 'Workshops'),
+(4, 'Ομιλίες');
 
 -- --------------------------------------------------------
 
@@ -59,8 +63,8 @@ INSERT INTO `attendee` (`attendeeid`, `name`, `surname`, `comments`) VALUES
 (1, 'LOVE', 'ADOTEY', 'Δοκιμαστικά Σχόλια'),
 (2, 'DIMOSTHENIS', 'ALASEIRLIS', ' Double room '),
 (3, 'WINFRED CHARTEY', 'ANNAN', ''),
-(4, 'ALBERTA', 'ASHLEY', ''),
-(5, 'Ioannis', 'Zarifis', 'Δοκιμαστικός χρήστης');
+(4, 'GEORGE', 'ANYFANTAKIS', ''),
+(5, 'ALBERTA', 'ASHLEY', '');
 
 -- --------------------------------------------------------
 
@@ -125,9 +129,9 @@ INSERT INTO `venues` (`id`, `name`, `starts`, `ends`, `counts`, `category`) VALU
 (1, 'OVERHEAD SPORTS', '2015-08-24 08:30:00', '2015-08-24 12:30:00', 3, 'Ομιλίες'),
 (2, 'Hall 1', '2015-08-24 18:00:00', '2015-08-24 20:00:00', 2, 'Tomas Clark Beginners'),
 (3, 'Hall 2', '2015-08-24 18:00:00', '2015-08-24 20:00:00', 2, 'Workshops'),
-(4, 'demo morning', '2015-08-21 08:30:00', '2015-08-21 12:30:00', 3, ''),
-(5, 'Demo Evening Paid', '2015-08-21 18:00:00', '2015-08-21 20:00:00', 2, ''),
-(6, 'Demo evening Free', '2015-08-21 18:00:00', '2015-08-21 20:00:00', 2, '');
+(4, 'demo morning Hall 1', '2015-08-21 08:30:00', '2015-08-21 12:30:00', 3, 'Ομιλίες'),
+(5, 'Demo Evening Paid', '2015-08-21 18:00:00', '2015-08-21 20:00:00', 2, 'Tomas Clark Beginners'),
+(6, 'Demo evening Free', '2015-08-21 18:00:00', '2015-08-21 20:00:00', 2, 'Workshops');
 
 --
 -- Indexes for dumped tables

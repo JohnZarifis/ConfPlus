@@ -13,7 +13,7 @@ if (isset($_POST['attendeeid'])) {
   $sql =    "select a.attendeeid,a.name,a.surname, a.comments,c.category, v.name as venue from attendee a "
               ."inner join access c on a.attendeeid = c.attendeeid inner join venues v on v.category = c.category "
 			  ." where a.attendeeid = {$attendeeid} and DAY(v.starts) = DAY(CURDATE()) "
-			  . " and hour(now) between hour(v.starts) -1 and hour(v.ends)";
+			  . " and hour(now()) between hour(v.starts) -1 and hour(v.ends)";
 			  
 $result_set = $database->query($sql);	
 $MultiDimArray = array();
@@ -42,10 +42,11 @@ foreach($MultiDimArray as $result){
 
 if (isset($_POST['in']) & $attendeeno != 0) {
     # in-button was clicked
+    $message = 'access is OK !!!';
 	$attendeeid = $_POST['attendeeid'];
 	$typeOfMove = 'in';
-	$sqlins = "insert into transactions (attendeeid,type,) values ({$attendeeid}  , {$typeOfMove}  ";
-	  $database->query($sqlins);	
+	$sqlins = "insert into transactions (attendeeid,type) values ({$attendeeid}  , '{$typeOfMove}')  ";
+	$database->query($sqlins);	
     //echo "he is in: ";
      //echo $_POST['attendeeid'];
      }
@@ -53,32 +54,33 @@ if (isset($_POST['in']) & $attendeeno != 0) {
         # Save-button was clicked
         $attendeeid = $_POST['attendeeid'];
 		$typeOfMove = 'out';
-		$sqlout = "insert into transactions (attendeeid,type,) values ({$attendeeid}  , {$typeOfMove}  ";
+		$sqlout = "insert into transactions (attendeeid,type) values ({$attendeeid}  , '{$typeOfMove}') ";
 	    $database->query($sqlout);	
        // echo "he is out: ";
        //echo $_POST['attendeeid'];
-    #header( 'Location: index.php') ; 
+    header( 'Location: presentout.php') ; 
     }
 	elseif(isset($_POST['ignore'])){
-     $sqlins = "insert into transactions (attendeeid,type,) values ({$attendeeid}  , {$typeOfMove}  ";
+     $sqlins = "insert into transactions (attendeeid,type) values ({$attendeeid}  , '{$typeOfMove}' )";
 	  $database->query($sqlins);	
 	}
-
-if($attendeeno == 0) {
+elseif(isset($_POST['in']) & $attendeeno == 0) {
 			 $message = 'No access at this time of day';
-			 echo $message;
-			 
-}else{
-           $message = 'access is OK !!!';
+			 //echo $message;
+			 $typeOfMove = 'in';
+			 $name = '';
+}		 
+           
 			$template = $twig->loadTemplate('attendancehandling.html');  
             echo $template->render(array('username' => $username,
                                      'attendeeno' =>$attendeeno,
                                      'res'=>$MultiDimArray,
 									 'message'=>$message,
 									 'name'=>$name,
-                                    
+                                     'type' =>$typeOfMove,
+									 'attendeeid' =>$attendeeid,
                                     )); 
-}
+
 
 	
 	

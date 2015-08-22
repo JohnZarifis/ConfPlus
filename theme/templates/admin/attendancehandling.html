@@ -63,52 +63,35 @@
                                                           {% endfor %}
 							
 							</tbody>
-							</table>
-		<!--	<table class="table table-hover table-striped table-bordered">
-							<tr>
-								<td>
-									 Basic Example
-								</td>
-								<td>
-									<a class="btn default" data-toggle="modal" href="#basic">
-									View Demo </a>
-								</td>
-							</tr>
-			</table>-->
-			<form action="attendanceHandling.php" class="form-horizontal" method="post">
-                            <div class="form-body">
+							</table>			
                              <h3 class="form-section">{{ message }} </h3>
 				<div class="row">
                                     <div class="col-md-6">
-									<!--<div class="form-group">
-                                            <label class="control-label col-md-3">ΌΝΟΜΑ</label>
-                                            <div class="col-md-9">
-                                             <input type="text" class="form-control" required pattern="[0-9]{4}" name ="attendeeid">					    
-                                            </div>
-									</div>-->
+									
                                     </div>
                                                                       
 				  </div>
 				<!--/row-->
- 
-                                  												
-												
-				
 				<div class="form-actions">
                                     <div class="row">
                                         <div class="col-md-6">
                                         <div class="row">
                                         <div class="col-md-offset-3 col-md-9">
-                                        <button type="submit" class="btn green btn-lg" name="ignore">ΕΙΣΟΔΟΣ</button>
-										<button type="button" class="btn red">Cancel</button>
-                                        <button type="submit" class="btn blue-madison btn-lg" name="stop" >ΕΞΟΔΟΣ</button>
+                                        {%  if attendeeno != 0  %}
+										<button  class="btn green btn-lg" onclick = "location.href = 'presentin.php'" autofocus >OK!</button>	
+																			
+										{% endif %}
+										{%  if attendeeno == 0  %}
+										<a class = "btn btn-lg red" href="presentin.php">Cancel</a>
+										<a class = "btn btn-lg green" href="forcein.php?attendeeid={{attendeeid}}">Accept Anyway</a>										
+										{% endif %}
 										<!--<a class="btn default" data-toggle="modal" href="#basic">View Demo </a>-->
                                         </div>
                                         </div>
                                         </div>													
                                     </div>
 				</div>
-                    </form>
+                   
 													<!-- END FORM-->
 			</div>
 		</div>

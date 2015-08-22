@@ -8,7 +8,7 @@ if (!$session->is_logged_in()) { redirect_to("login.php"); }
 $username = $_SESSION['user_name'];
 $id = $_SESSION['user_id'];
 
-$template = $twig->loadTemplate('present.html');  
+$template = $twig->loadTemplate('presentout.html');  
         echo $template->render(array('username' => $username,                                     
                                      
                                     

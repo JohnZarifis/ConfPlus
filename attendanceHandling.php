@@ -13,7 +13,7 @@ if (isset($_POST['attendeeid'])) {
   $sql =    "select a.attendeeid,a.name,a.surname, a.comments,c.category, v.name as venue from attendee a "
               ."inner join access c on a.attendeeid = c.attendeeid inner join venues v on v.category = c.category "
 			  ." where a.attendeeid = {$attendeeid} and DAY(v.starts) = DAY(CURDATE()) "
-			  . " and hour(now()) between hour(v.starts) -1 and hour(v.ends)";
+			  . " and hour(now()) between hour(v.starts) -1 and hour(v.ends) + 2";
 			  
 $result_set = $database->query($sql);	
 $MultiDimArray = array();

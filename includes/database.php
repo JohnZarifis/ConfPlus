@@ -41,6 +41,9 @@ class MySQLDatabase{
 		return $result;
 	 }
 	 
+	  public function num_rows($result_set){
+	 	return mysql_num_rows($result_set);
+	 }
 
 	 //database neutral methods
 	 public function fetch_array($result_set){

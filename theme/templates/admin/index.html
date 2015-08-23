@@ -240,7 +240,9 @@
 							<thead>
 							<tr>
 								
-								
+								<th>
+									 BARCODE
+								</th>
 								<th>
 									 ΟΝΟΜΑ
 								</th>
@@ -258,7 +260,8 @@
 							</thead>
 							<tbody>
                                                             {% for row in res %}
-                                                         <tr>                                                      
+                                                         <tr>
+													     <td>{{ row['attendeeid']}}</td>
                                                          <td>{{ row['name']}}</td>                                                         
                                                          <td>{{ row['surname']}}</td>
 														 <td>{{ row['comments']}}</td>    

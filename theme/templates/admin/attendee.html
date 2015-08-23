@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+{% block page_styles %}
+{{ parent() }}
+<!-- BEGIN PAGE LEVEL STYLES -->
+<link rel="stylesheet" type="text/css" href="theme/assets/global/plugins/select2/select2.css"/>
+
+
+
+<!-- END PAGE LEVEL STYLES -->
+{% endblock %}
+{% block title %}
+ Conf +| Attendee Info
+{%  endblock %}
+{%  block content %}
+<!-- BEGIN CONTENT -->
+
+	<div class="page-content-wrapper">
+		<div class="page-content">
+                  <div class="portlet light bg-inverse">
+                    <div class="portlet-title">
+			<div class="caption">
+			<i class="icon-equalizer font-green-haze"></i>
+			<span class="caption-subject font-green-haze bold uppercase">ΣΤΟΙΧΕΙΑ ΣΥΜΜΕΤΕΧΟΝΤΑ</span>
+			<span class="caption-helper">{{ attendeeid ? "BARCODE: #{attendeeid} "  : '' }}</span>
+			</div>
+                            <div class="tools">
+				<a href="" class="collapse"></a>
+				<a href="#portlet-config" data-toggle="modal" class="config"></a>
+				<a href="" class="reload"></a>
+											
+			    </div>
+		    </div>
+			<div class="portlet-body form">
+			<!-- BEGIN FORM-->
+			<form action="attendeeHandling.php" class="form-horizontal" method="post">
+                            <div class="form-body">
+                            <h3 class="form-section">Στοιχεία Συμμετέχοντα</h3>
+				<div class="row">
+                                    <div class="col-md-6">
+					<div class="form-group">
+                                            <label class="control-label col-md-3">Barcode</label>
+                                            <div class="col-md-9">
+                                             <input type="text" class="form-control" required pattern="[0-9]{13}" name ="attendeeid" value="{{attendeeid}}">
+					    
+                                            </div>
+					</div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+					<div class="form-group">
+					<label class="control-label col-md-3">Φύλο</label>
+					<div class="col-md-9">
+					<select class="form-control" name = "gender">
+					<option {{ gender =="Ανδρας" ? 'selected':''}} value="Ανδρας" >Ανδρας</option>
+					<option {{ gender =="Γυναίκα" ? 'selected':''}} value="Γυναίκα" >Γυναίκα</option>
+					</select>
+					
+					</div>
+					</div>
+                                    </div>
+                                    <!--/span-->                                                                    
+				</div>
+				<!--/row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                    <div class="form-group">
+                                    <label class="control-label col-md-3">Όνομα</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="name" value="{{name}}">
+                                    </div>
+                                    </div>
+                                    </div>
+                                    <!--/span--> 
+                                    <div class="col-md-6">
+                                    <div class="form-group">
+                                    <label class="control-label col-md-3">Επώνυμο</label>
+                                    <div class="col-md-9">
+                                    <input type="text" class="form-control" name="surname" value="{{surname}}">
+                                    </div>
+                                    </div>
+                                    </div>
+				</div>
+                                <!--/row-->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                        <div class="form-group">
+                                        <label class="control-label col-md-3">Σχόλια :</label>
+                                        <div class="col-md-9">
+										<input type="text" class="form-control" name="comments"" value="{{comments}}">                                   
+                                        
+                                        </div>
+                                        </div>                                    
+                                        </div>
+                                    </div>
+				<h3 class="form-section">Δικαιώματα</h3>
+				<!--/row-->
+                                <div class="row">
+                                 <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                        <label class="control-label col-md-3">Ομιλίες</label>
+                                        <div class="col-md-9">
+                                        <div class="radio-list">
+                                        <label class="radio-inline">
+                                        <input type="radio" name="omilies" value="1" {{ omilies == 1 ? 'checked':''}}  />
+                                        Ναι </label>
+                                        <label class="radio-inline">
+                                        <input type="radio" name="omilies" value="0" {{ omilies == 0 ? 'checked':''}}/>
+                                        Όχι </label>
+                                        </div>
+                                        </div>
+                                        </div>
+                                    </div>
+				<!--/span-->                                                                                                        
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                        <label class="control-label col-md-3">Workshops</label>
+                                        <div class="col-md-9">
+                                        <div class="radio-list">
+                                        <label class="radio-inline">
+                                        <input type="radio" name="workshops" value="1" {{ workshops == 1 ? 'checked':''}} />
+                                        Ναι </label>
+                                        <label class="radio-inline">
+                                        <input type="radio" name="workshops" value="0" {{ workshops == 0 ? 'checked':''}} />
+                                        Όχι </label>
+                                        </div>
+                                        </div>
+                                        </div>
+                                    </div>
+				<!--/span-->
+                                </div>
+                                <div class="row">
+                                 <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                        <label class="control-label col-md-3">Tomas Clark Beginners</label>
+                                        <div class="col-md-9">
+                                        <div class="radio-list">
+                                        <label class="radio-inline">
+                                        <input type="radio" name="tomasbeg" value="1" {{ tomasbeg == 1 ? 'checked':''}}  />
+                                        Ναι </label>
+                                        <label class="radio-inline">
+                                        <input type="radio" name="tomasbeg" value="0" {{ tomasbeg == 0 ? 'checked':''}}/>
+                                        Όχι </label>
+                                        </div>
+                                        </div>
+                                        </div>
+                                    </div>
+				<!--/span-->                                                                                                        
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                        <label class="control-label col-md-3">Tomas Clark Advanced</label>
+                                        <div class="col-md-9">
+                                        <div class="radio-list">
+                                        <label class="radio-inline">
+                                        <input type="radio" name="tomasadv" value="1" {{ tomasadv == 1 ? 'checked':''}} />
+                                        Ναι </label>
+                                        <label class="radio-inline">
+                                        <input type="radio" name="tomasadv" value="0" {{ tomasadv == 0 ? 'checked':''}} />
+                                        Όχι </label>
+                                        </div>
+                                        </div>
+                                        </div>
+                                    </div>
+				<!--/span-->
+                                </div>                          			
+				<!--/row-->				
+				</div>
+				<div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                        <div class="row">
+                                        <div class="col-md-offset-3 col-md-9">                                     
+                                        <button type="submit" class="btn blue-madison" name="save" >Submit</button>                                   
+										<a class = "btn  red" href="index.php">Cancel</a>
+                                        </div>
+                                        </div>
+                                        </div>													
+                                    </div>
+				</div>
+                    </form>
+										<!-- END FORM-->
+		</div>
+	</div>
+							
+    </div>
+</div>
+        
+<!-- END CONTENT -->
+
+{%  endblock %}  
+{% block page_level_scripts %}
+{{ parent() }}
+
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script type="text/javascript" src="theme/assets/global/plugins/select2/select2.min.js"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+
+<!-- END PAGE LEVEL SCRIPTS -->
+{%  endblock %}
